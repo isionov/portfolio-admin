@@ -1,0 +1,150 @@
+Redux
+{
+    loggedIn:{
+        success: true | false
+        token: String
+        id: Number 
+    }
+    skillCards:{}
+    workCards:{
+        redactionCard:{
+            isOpened: true | false
+            initialState:{
+                initialValues:{
+                    workname
+                    worklink
+                    workdesc
+                    worktags
+                    oldworktags
+                }
+                currentImg: URL | Object:File
+                currentId // ID of radacting Reviews, if new rev , then null
+                loadImgError: true | false
+            }
+
+        }
+        allCards:{
+            [cardId]:{cardContent}
+            [cardId]:{cardContent}
+            ...
+        }
+    }
+    revsCards:{
+        redactionCard:{
+            isOpened: true | false
+            initialState:{
+                initialValues:{
+                    revname
+                    revocc 
+                    revtext
+                }
+                currentImg: URL | Object:File
+                currentId // ID of radacting Reviews, if new rev , then null
+            }
+        }
+        allCards:{
+            [cardId]:{cardContent}
+            [cardId]:{cardContent}
+            ...
+        }
+    }
+}
+
+Page "Работы"
+    Names of Fields :
+    1) workname - title
+    2) worklink - link
+    3) workdesc - description
+    4) worktags - used techonologies
+    5) oldworktags - techonologies stored on server
+
+
+
+
+****************************************************************************
+Page "Отзывы"
+
+Name Component for redaction reviews: "RevsRedactionCard"
+    Names of Fields :
+                        1) revname - Authors Name
+                        2) revocc  - Authors Occupation
+                        3) revtext - Authors Reviews Text
+
+Name Component for loading Image: 'RevImageLoader'
+Actions
+
+1)
+ revsOpenRedactionCardAction      
+    //  Open redaction card with empty initial state of final form 
+    // (names of fields only with empty strin as values)
+    // payload - empty
+
+2)
+ revsCloseRedactionCardAction
+    //  Close redaction card. Set initialState to null
+    // payload - empty
+
+3)
+ revsLoadImgAction 
+    // Set value redux field 'currentImg'  to loaded image (Object|File)
+    // payload - loaded file from event 'change' on file input 
+
+4)
+ revsPostNewRevAction
+    // post request on server
+    // payload - FormData with all not empty fields (validated) :  { formData }
+
+5)
+ revsGetAllRevAction 
+    // get request on server. Token and Id is needed. I get it in saga from redux
+    // payload - empty
+
+6)
+ revsGetAllRevSuccessAction 
+    // put response with all revs in redux (Field 'allCards'). Parsing of payload
+    // is performed in reducer to bring to view of object with keys: id's of allCards
+    // and values : same cards 
+    // payload - responce from request 'revsGetAllRevAction'
+
+7) 
+ revsRedactCardAction 
+    // open ResactionCards and set initialValues to proper values
+    // payload is prepared in component for dispatching (relate to field names 
+    //of final form). In reduver field 'initialState' will change
+
+8)
+ revsChangeRevAction 
+    // init post request
+    // payload - FormData object and ID of card: { formData, currentId }
+
+9)
+ revsDeleteRevAction 
+    // init delete request
+    // payload - ID of deleting card : { currentId } 
+
+
+
+
+
+
+
+
+
+
+
+
+*************************************************************
+CustomComponents
+
++ FlexContainer props:    customWidth:''; customHeight:''; flexDirection:row; 
+                          flexShrink:'', flexGrow: '', flexBasis:'';
+                          background: transparent;
+
++ Container 
++ OwnerImg
++ WrapperOwnerImage
++ Title 
++ Icon
++ ButtonIconText
++ AuthLink
++ Button
