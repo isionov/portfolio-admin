@@ -5,8 +5,6 @@ import createSagaMiddleware from "redux-saga";
 
 const sagaMiddleWare = createSagaMiddleware();
 let getStore;
-console.log(window);
-console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === "development") {
   getStore = () => {
