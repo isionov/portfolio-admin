@@ -1,6 +1,7 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://iliaion-dev.ru/api/";
+// axios.defaults.baseURL = "http://localhost:3000/api/";
 // axios.defaults.baseURL = "https://webdev-api.loftschool.com";
 axios.defaults.headers = {
   "Content-Type": "application/json"

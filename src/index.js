@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
 const store = getStore();
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/api/">
     <GlobalStyle />
     <Provider store={store}>
       <App />

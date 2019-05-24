@@ -12,7 +12,7 @@ const PATH = {
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = "/dist";
+  const publicPath = "/api/";
 
   const jsx = {
     test: /\.(js|jsx)$/i,
