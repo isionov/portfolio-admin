@@ -105,14 +105,14 @@ class RevsPreviewCard extends Component {
         revocc: occ,
         revtext: text
       },
-      currentImg: `https://webdev-api.loftschool.com/${photo}`,
+      currentImg: `http://iliaion-dev.ru/${photo}`,
       currentId: id
     };
 
     revsRedactCardAction(data);
   };
 
-  clickDeleteHandler = (e) => {
+  clickDeleteHandler = e => {
     const {
       cardState: { id },
       revsDeleteRevAction
@@ -136,9 +136,7 @@ class RevsPreviewCard extends Component {
             customWidth="50px"
             customHeight="50px"
           >
-            <StyledImageCustom
-              src={`https://webdev-api.loftschool.com/${photo}`}
-            />
+            <StyledImageCustom src={`http://iliaion-dev.ru/${photo}`} />
           </FlexContainerImgWrapper>
           <FlexContainerRightCol
             flexBasis="100%"

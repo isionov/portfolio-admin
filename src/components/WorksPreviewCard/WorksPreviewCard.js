@@ -112,7 +112,8 @@ class WorksPreviewCard extends Component {
         oldworktags: techs,
         worktags: ""
       },
-      currentImg: `https://webdev-api.loftschool.com/${photo}`,
+      currentImg: `http://iliaion-dev.ru/${photo}`,
+      // currentImg: `https://webdev-api.loftschool.com/${photo}`,
       currentId: id
     };
 
@@ -135,11 +136,11 @@ class WorksPreviewCard extends Component {
   render() {
     const { title, link, description, photo, techs } = this.props.cardState;
     let tags = techs.split(" ");
-
+    console.log("render", photo);
     return (
       <FlexContainerWrapper>
         <FlexContainerImgWrapper>
-          <ImageCustom src={`https://webdev-api.loftschool.com/${photo}`} />
+          <ImageCustom src={`http://iliaion-dev.ru/${photo}`} />
           <FlexContainerTagsWrapper>
             {tags.map(tag => {
               if (tag)

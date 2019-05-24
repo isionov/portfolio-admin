@@ -18,7 +18,7 @@ export function* revWatcher() {
   yield takeEvery(revsDeleteRevAction, postDeleteRevWorker);
 }
 
-const postNewRev = async (token, formData) => {
+const postNewRev = async formData => {
   const rawData = await instanceAxios.post(`/reviews`, formData);
 
   return rawData.data;
@@ -26,10 +26,9 @@ const postNewRev = async (token, formData) => {
 
 export function* postNewRevWorker(action) {
   const { formData } = action.payload;
-  const token = yield select(getToken);
 
   try {
-    const res = yield call(postNewRev, token, formData);
+    const res = yield call(postNewRev, formData);
     yield put(revsCloseRedactionCardAction());
     yield put(revsGetAllRevAction());
   } catch (error) {
@@ -37,25 +36,22 @@ export function* postNewRevWorker(action) {
   }
 }
 
-const getAllRev = async (token, id) => {
-  const rawData = await instanceAxios.get(`/reviews/${id}`);
+const getAllRev = async () => {
+  const rawData = await instanceAxios.get(`/reviews`);
 
   return rawData.data;
 };
 
 export function* getAllRevWorker() {
-  const token = yield select(getToken);
-  const id = yield select(getUserId);
-
   try {
-    const res = yield call(getAllRev, token, id);
+    const res = yield call(getAllRev);
     yield put(revsGetAllRevSuccessAction(res));
   } catch (error) {
     console.log(error);
   }
 }
 
-const postChangeRev = async (token, formData, currentId) => {
+const postChangeRev = async (formData, currentId) => {
   const rawData = await instanceAxios.post(`/reviews/${currentId}`, formData);
 
   return rawData.data;
@@ -63,9 +59,8 @@ const postChangeRev = async (token, formData, currentId) => {
 
 export function* postChangeRevWorker(action) {
   const { formData, currentId } = action.payload;
-  const token = yield select(getToken);
   try {
-    const res = yield call(postChangeRev, token, formData, currentId);
+    const res = yield call(postChangeRev, formData, currentId);
     yield put(revsCloseRedactionCardAction());
     yield put(revsGetAllRevAction());
   } catch (error) {
@@ -73,7 +68,7 @@ export function* postChangeRevWorker(action) {
   }
 }
 
-const postDeleteRev = async (token, currentId) => {
+const postDeleteRev = async currentId => {
   const rawData = await instanceAxios.delete(`/reviews/${currentId}`);
 
   return rawData.data;
@@ -81,9 +76,8 @@ const postDeleteRev = async (token, currentId) => {
 
 export function* postDeleteRevWorker(action) {
   const { currentId } = action.payload;
-  const token = yield select(getToken);
   try {
-    const res = yield call(postDeleteRev, token, currentId);
+    const res = yield call(postDeleteRev, currentId);
     yield put(revsGetAllRevAction());
   } catch (error) {
     console.log(error);

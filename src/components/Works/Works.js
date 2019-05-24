@@ -11,14 +11,6 @@ import {
   getAllWorkCards
 } from "../../modules/Works";
 import { worksGetAllWorkAction } from "../../modules/Works";
-import styled from "styled-components";
-
-// const StyledSectionHeader = styled(SectionHeader)`
-//   @media (max-width: ${`${media.phones}`}) {
-//     padding: 35px 0 35px 15px;
-//     margin: 0;
-//   }
-// `;
 
 class Works extends Component {
   componentDidMount() {
@@ -29,7 +21,9 @@ class Works extends Component {
   renderCards = arrCards => {
     let res = [];
     for (const item in arrCards) {
-      res.push(<WorksPreviewCard key={item} cardState={arrCards[item]} />);
+      res.push(
+        <WorksPreviewCard key={item} cardState={{ ...arrCards[item] }} />
+      );
     }
     return res.length ? res : null;
   };

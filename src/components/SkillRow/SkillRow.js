@@ -196,7 +196,7 @@ class SkillRow extends Component {
       if (head) {
         skillRemoveCardAction({ cardId: cardId });
       } else {
-        const numberPartRowId = parseInt((rowId + "").split("_")[0]);
+        const numberPartRowId = (rowId + "").split("_")[0];
 
         skillRemoveSkillAction({ rowId: numberPartRowId });
       }

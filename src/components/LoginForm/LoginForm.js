@@ -77,7 +77,7 @@ class LoginForm extends Component {
       <>
         <Form
           onSubmit={this.handlerSubmitting}
-          initialValues={{ login: "ionov032019", password: "1523@" }}
+          initialValues={{ login: "", password: "" }}
         >
           {({ handleSubmit, submitting, values }) => (
             <StyledFlexWrapper customWidth={"560px"} flexDirection={"column"}>
@@ -92,7 +92,7 @@ class LoginForm extends Component {
               <FormCustom onSubmit={handleSubmit}>
                 <StyledFlexWrapperField customWidth="100%">
                   <FieldCustom
-                    freez={true}
+                    freez={false}
                     validate={validationRequired}
                     id="login"
                     name="login"
@@ -102,7 +102,7 @@ class LoginForm extends Component {
                 </StyledFlexWrapperField>
                 <StyledFlexWrapperField customWidth="100%">
                   <FieldCustom
-                    freez={true}
+                    freez={false}
                     validate={validationRequired}
                     id="password"
                     name="password"

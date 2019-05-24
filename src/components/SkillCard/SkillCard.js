@@ -46,7 +46,7 @@ function properPercent(p) {
 }
 
 class SkillCard extends Component {
-  onSubmitForm = (values) => {
+  onSubmitForm = values => {
     const {
       newCard,
       skillFetchNewCardAction,
@@ -60,7 +60,7 @@ class SkillCard extends Component {
     } = this.props;
 
     const editingRow = getEditingRow(cardId);
-    const numberPartEditingRowId = parseInt((editingRow + "").split("_")[0]);
+    const numberPartEditingRowId = (editingRow + "").split("_")[0];
 
     const flagHead =
       editingRow && (editingRow + "").split("_")[1] === "head" ? true : false;
@@ -109,7 +109,7 @@ class SkillCard extends Component {
     skillStopCardEditingAction({ cardId });
   };
 
-  validateCallback = (values) => {
+  validateCallback = values => {
     const errors = {};
     const { newCard, cardId, getEditingRow } = this.props;
 
@@ -158,7 +158,7 @@ class SkillCard extends Component {
           mutators={{
             resetFieldMutator: (args, state, methods) => {
               let initVal = state.formState.initialValues[args[0]];
-              methods.changeValue(state, args[0], (value) => initVal);
+              methods.changeValue(state, args[0], value => initVal);
             }
           }}
           initialValues={initialValues}
@@ -194,7 +194,7 @@ class SkillCard extends Component {
               >
                 {newCard
                   ? null
-                  : skillList.map((item) => {
+                  : skillList.map(item => {
                       return (
                         <SkillRow
                           dunamicHovered={true}
@@ -238,7 +238,7 @@ class SkillCard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   getEditingRow: getEditingRow(state)
 });
 
