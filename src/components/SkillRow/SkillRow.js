@@ -38,13 +38,16 @@ const StyledButton = styled(Button)`
   height: 15px;
   flex-shrink: 0;
   @media (max-width: ${`${media.tablets}`}) {
-    margin-left: 15px;
+    margin-left: auto;
   }
 `;
 
 const StyledRightButton = styled(StyledButton)`
   margin-left: 15px;
   flex-shrink: 0;
+  @media (max-width: ${`${media.tablets}`}) {
+    margin-left: 15px;
+  }
 `;
 
 const StyledFlexWrapperPercent = styled(FlexContainer)`
