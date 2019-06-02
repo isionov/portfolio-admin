@@ -150,7 +150,7 @@ class WorksPreviewCard extends Component {
         </FlexContainerImgWrapper>
         <StyledTitle>{title}</StyledTitle>
         <StyledTextCustom>{description}</StyledTextCustom>
-        <LinkCustom width="90%" margin="0 0 30px 0" href="some_link">
+        <LinkCustom width="90%" margin="0 0 30px 0" href={link}>
           {link}
         </LinkCustom>
         <FlexContainerBtn>
