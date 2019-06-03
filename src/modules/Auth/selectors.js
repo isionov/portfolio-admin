@@ -11,7 +11,7 @@ export const getLoggedStatus = createSelector(
 export const getErrorStatus = createSelector(
   [state => state.loggedIn],
   loggedIn => {
-    return path(["error"], loggedIn);
+    return path(["message"], loggedIn);
   }
 );
 

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FlexContainer from "../FlexContainer";
 import { Field } from "react-final-form";
 import Label from "../Label";
@@ -9,7 +9,7 @@ import { colors } from "../../modules/params";
 import TextCustom from "../TextCustom";
 
 const StyledTextCustom = styled(TextCustom)`
-  width: 150px;
+  width: 100%;
 `;
 
 const StyledFlexContainer = styled(FlexContainer)`
@@ -57,62 +57,65 @@ const FieldCustom = props => {
   } = props;
 
   return (
-    <Field id={id} name={name} placeholder={placeholder}>
-      {({ input, meta, placeholder, ...other }) => (
-        <StyledFlexContainer
-          customWidth="100%"
-          simple={simple}
-          justifyContent="flex-start"
-        >
-          <StyledFlexWrapperIcon
-            customWidth="20px"
-            customHeight="20px"
-            simple={simple}
-          >
-            <Icon
-              fill="transparent"
-              stroke={colors.colorDefaultIcon}
-              iconItem={iconItem}
-              strokeWidth={strokeWidth}
-              preserveAspectRatio={preserveAspectRatio}
-            />
-          </StyledFlexWrapperIcon>
-          <StyledFlexWrapperInput
-            flexDirection="column"
-            alignItems="flex-start"
+    <Field validate={validate} id={id} name={name} placeholder={placeholder}>
+      {({ input, meta, placeholder, ...other }) => {
+        return (
+          <StyledFlexContainer
             customWidth="100%"
+            simple={simple}
+            justifyContent="flex-start"
           >
-            <Label
-              htmlFor={id}
-              margin={simple ? null : "0 0 10px 0"}
-              color={colors.colorDarkText}
-              other={simple ? "display:none;" : null}
+            <StyledFlexWrapperIcon
+              customWidth="20px"
+              customHeight="20px"
+              simple={simple}
             >
-              {title}
-            </Label>
-            <Input
-              dunamicHovered={dunamicHovered}
-              disabled={freez}
-              type={type}
-              id={id}
-              hovered={hovered}
-              {...input}
-              {...other}
-              placeholder={placeholder}
-            />
-          </StyledFlexWrapperInput>
-          <StyledTextCustom
-            dispaly={simple ? "none;" : null}
-            as="span"
-            other={styleError(
-              errorPreset,
-              meta.error && meta.touched && meta.submitFailed
-            )}
-          >
-            {!freez && meta.error}
-          </StyledTextCustom>
-        </StyledFlexContainer>
-      )}
+              <Icon
+                fill="transparent"
+                stroke={colors.colorDefaultIcon}
+                iconItem={iconItem}
+                strokeWidth={strokeWidth}
+                preserveAspectRatio={preserveAspectRatio}
+              />
+            </StyledFlexWrapperIcon>
+            <StyledFlexWrapperInput
+              flexDirection="column"
+              alignItems="flex-start"
+              customWidth="100%"
+            >
+              <Label
+                htmlFor={id}
+                margin={simple ? null : "0 0 10px 0"}
+                color={colors.colorDarkText}
+                other={simple ? "display:none;" : null}
+              >
+                {title}
+              </Label>
+              <Input
+                dunamicHovered={dunamicHovered}
+                disabled={freez}
+                type={type}
+                id={id}
+                hovered={hovered}
+                {...input}
+                {...other}
+                placeholder={placeholder}
+              />
+            </StyledFlexWrapperInput>
+            <StyledTextCustom
+              dispaly={simple ? "none;" : null}
+              as="span"
+              other={styleError(
+                errorPreset,
+                (meta.error && (meta.touched && meta.submitFailed)) ||
+                  (meta.visited && !meta.active)
+              )}
+            >
+              {!freez && meta.error}
+            </StyledTextCustom>
+          </StyledFlexContainer>
+        );
+      }}
     </Field>
   );
 };

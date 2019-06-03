@@ -5,7 +5,6 @@ import {
   handleLoginSubmit,
   loginReset
 } from "./actions";
-import axios from "axios";
 import instanceAxios from "../initApi.js";
 
 const auth = async (login, password) => {
@@ -13,10 +12,12 @@ const auth = async (login, password) => {
     name: login,
     password: password
   });
-  const token = rawData.data.token;
+  const { token, message, err } = rawData.data;
 
   instanceAxios.defaults.headers["Authorization"] =
     "Bearer " + rawData.data.token;
+
+  if (err) return { err, message };
 
   const rawDataUser = await instanceAxios.get("/user");
   const id = rawDataUser.data.user.id;
@@ -37,16 +38,24 @@ export function* authWorker(action) {
   const { login, password } = action.payload;
   try {
     const res = yield call(auth, login, password);
-
-    localStorage.setItem("tkn", res.token);
-    localStorage.setItem("id", res.id);
-    yield put(
-      loginSuccess({
-        success: true,
-        // token: res.token,
-        id: res.id
-      })
-    );
+    const { err, message } = res;
+    if (err) {
+      yield put(
+        loginFailure({
+          success: false,
+          message
+        })
+      );
+    } else {
+      localStorage.setItem("tkn", res.token);
+      localStorage.setItem("id", res.id);
+      yield put(
+        loginSuccess({
+          success: true,
+          id: res.id
+        })
+      );
+    }
   } catch (error) {
     console.log(error);
   }
