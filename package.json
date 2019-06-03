@@ -61,8 +61,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --mode=development --hot",
-    "build2": "rm -rf dist && webpack --mode=production",
+    "start": "webpack-dev-server --mode=development --hot",
     "build": "rm -rf dist && webpack --mode=production --progress",
     "prob": "rm -rf dist && webpack --mode=development --progress",
     "reg": "node reg-util.js"
