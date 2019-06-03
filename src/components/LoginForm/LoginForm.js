@@ -63,14 +63,21 @@ const presetsPass = {
 const customMutator = (args, state, tools) => {};
 
 class LoginForm extends Component {
+  state = { error: false, count: 0 };
+
   validationRequired = values => {
     const { loggedIn, errMessage } = this.props;
     let result = undefined;
 
     if (!values) {
       result = "Необходимо заполнить поле";
-    } else if (!loggedIn) {
+    } else if (!loggedIn && this.state.count === 1) {
       result = errMessage;
+      return result;
+    } else if (!loggedIn && this.state.count > 1) {
+      result = undefined;
+      this.setState({ ...this.state, count: 0 });
+      return result;
     } else {
       result = undefined;
     }
@@ -83,6 +90,9 @@ class LoginForm extends Component {
     handleLoginSubmit(values);
   };
 
+  onClick = () => {
+    this.setState({ ...this.state, count: this.state.count + 1 });
+  };
   render() {
     const { loggedIn } = this.props;
 
@@ -135,6 +145,7 @@ class LoginForm extends Component {
                     disabled={submitting}
                     type="submit"
                     backType={`grad`}
+                    onClick={this.onClick}
                   >
                     Отправить
                   </StyleSubmitdButton>
