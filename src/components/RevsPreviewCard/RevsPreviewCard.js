@@ -105,7 +105,7 @@ class RevsPreviewCard extends Component {
         revocc: occ,
         revtext: text
       },
-      currentImg: { photo },
+      currentImg: `data:image/png;base64, ${photo}`,
       // currentImg: `http://iliaion-dev.ru/${photo}`,
 
       currentId: id
@@ -138,7 +138,7 @@ class RevsPreviewCard extends Component {
             customWidth="50px"
             customHeight="50px"
           >
-            <StyledImageCustom src={photo} />
+            <StyledImageCustom src={`data:image/png;base64, ${photo}`} />
           </FlexContainerImgWrapper>
           <FlexContainerRightCol
             flexBasis="100%"

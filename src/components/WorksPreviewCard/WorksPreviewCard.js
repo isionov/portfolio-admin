@@ -112,7 +112,7 @@ class WorksPreviewCard extends Component {
         oldworktags: techs,
         worktags: ""
       },
-      currentImg: `{data:image/png;base64, ${photo}`,
+      currentImg: `data:image/png;base64, ${photo}`,
       // currentImg: `http://iliaion-dev.ru/${photo}`,
       // currentImg: `https://webdev-api.loftschool.com/${photo}`,
       currentId: id
