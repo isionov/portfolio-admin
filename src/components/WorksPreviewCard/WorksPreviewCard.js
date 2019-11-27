@@ -112,7 +112,8 @@ class WorksPreviewCard extends Component {
         oldworktags: techs,
         worktags: ""
       },
-      currentImg: `http://iliaion-dev.ru/${photo}`,
+      currentImg: `{data:image/png;base64, ${photo}`,
+      // currentImg: `http://iliaion-dev.ru/${photo}`,
       // currentImg: `https://webdev-api.loftschool.com/${photo}`,
       currentId: id
     };
@@ -140,7 +141,7 @@ class WorksPreviewCard extends Component {
     return (
       <FlexContainerWrapper>
         <FlexContainerImgWrapper>
-          <ImageCustom src={`http://iliaion-dev.ru/${photo}`} />
+          <ImageCustom src={`data:image/png;base64, ${photo}`} />
           <FlexContainerTagsWrapper>
             {tags.map(tag => {
               if (tag)
@@ -180,7 +181,4 @@ const mapDispatchToProps = {
   worksDeleteWorkAction
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WorksPreviewCard);
+export default connect(mapStateToProps, mapDispatchToProps)(WorksPreviewCard);

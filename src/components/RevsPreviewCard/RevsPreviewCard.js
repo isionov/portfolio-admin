@@ -105,7 +105,9 @@ class RevsPreviewCard extends Component {
         revocc: occ,
         revtext: text
       },
-      currentImg: `http://iliaion-dev.ru/${photo}`,
+      currentImg: { photo },
+      // currentImg: `http://iliaion-dev.ru/${photo}`,
+
       currentId: id
     };
 
@@ -136,7 +138,7 @@ class RevsPreviewCard extends Component {
             customWidth="50px"
             customHeight="50px"
           >
-            <StyledImageCustom src={`http://iliaion-dev.ru/${photo}`} />
+            <StyledImageCustom src={photo} />
           </FlexContainerImgWrapper>
           <FlexContainerRightCol
             flexBasis="100%"
@@ -176,7 +178,4 @@ const mapDispatchToProps = {
   revsDeleteRevAction
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RevsPreviewCard);
+export default connect(mapStateToProps, mapDispatchToProps)(RevsPreviewCard);
